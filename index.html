@@ -3,81 +3,153 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#111111" />
-  <meta name="description" content="Marcello Links — voting outfit, social links, dan sponsor." />
-  <title>Marcello Links</title>
+  <meta name="theme-color" content="#0b0b10" />
+  <meta name="description" content="Marcello — vote outfit favorit dan buka link resmi." />
+  <title>Marcello</title>
   <style>
-    :root{--bg:#0b0b0d;--card:#151519;--text:#f7f7f8;--muted:#a8a8b3;--line:#26262c;--accent:#ffffff}
+    :root{
+      --bg:#08090d;
+      --panel:rgba(255,255,255,.075);
+      --panel-strong:rgba(255,255,255,.11);
+      --line:rgba(255,255,255,.12);
+      --text:#fff;
+      --muted:#b9b9c6;
+      --pink:#ff4fa3;
+      --violet:#8b5cf6;
+      --cyan:#46d7ff;
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+    }
+
     *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    body{display:flex;justify-content:center;padding:28px 16px 48px;background:radial-gradient(circle at top,#1b1b22 0,#0b0b0d 42%)}
-    .wrap{width:100%;max-width:460px}
-    .profile{text-align:center;margin:8px 0 24px}
-    .avatar{width:88px;height:88px;margin:auto;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff,#777);color:#111;font-size:34px;font-weight:800;border:3px solid rgba(255,255,255,.12);box-shadow:0 12px 40px rgba(0,0,0,.35)}
-    h1{margin:14px 0 4px;font-size:25px;letter-spacing:-.4px}
-    .bio{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
-    .card{background:rgba(21,21,25,.9);border:1px solid var(--line);border-radius:22px;padding:16px;margin:14px 0;box-shadow:0 16px 50px rgba(0,0,0,.2);backdrop-filter:blur(12px)}
-    .card h2{font-size:16px;margin:0 0 12px}
-    .vote{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-    .vote button,.link{appearance:none;border:1px solid var(--line);background:#1e1e24;color:var(--text);border-radius:15px;padding:13px 10px;font-size:14px;font-weight:700;text-decoration:none;text-align:center;cursor:pointer;transition:.18s ease}
-    .vote button:hover,.link:hover{transform:translateY(-1px);background:#25252c}
-    .vote button.active{background:var(--accent);color:#111;border-color:var(--accent)}
-    .result{min-height:20px;margin:11px 2px 0;color:var(--muted);font-size:13px;text-align:center}
-    .links{display:grid;gap:10px}
-    .link{display:flex;align-items:center;justify-content:space-between;padding:15px 16px}
-    .link span:last-child{opacity:.55}
-    .sponsor{background:#f5f5f7;color:#111;border-color:#f5f5f7}
-    .sponsor:hover{background:#fff}
-    .note{font-size:12px;color:var(--muted);line-height:1.55;margin:10px 2px 0}
-    footer{text-align:center;color:#6f6f78;font-size:12px;margin-top:22px}
+    html{min-height:100%;background:var(--bg)}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 15% 5%,rgba(255,79,163,.18),transparent 32%),
+        radial-gradient(circle at 90% 15%,rgba(139,92,246,.2),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(70,215,255,.10),transparent 35%),
+        #08090d;
+    }
+
+    .orb{position:fixed;border-radius:999px;filter:blur(70px);opacity:.55;pointer-events:none;z-index:0;animation:float 10s ease-in-out infinite alternate}
+    .orb.one{width:180px;height:180px;background:#ff4fa3;top:-70px;left:-70px}
+    .orb.two{width:220px;height:220px;background:#775cff;right:-95px;top:26%;animation-delay:-3s}
+    @keyframes float{to{transform:translate3d(14px,22px,0) scale(1.08)}}
+
+    .shell{position:relative;z-index:1;width:min(100%,470px);margin:0 auto;padding:34px 18px 42px}
+
+    .top{text-align:center;padding:10px 8px 22px}
+    .avatar-wrap{position:relative;width:102px;height:102px;margin:0 auto 16px}
+    .avatar-ring{position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 180deg,var(--pink),var(--violet),var(--cyan),var(--pink));filter:saturate(1.15)}
+    .avatar{position:absolute;inset:4px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#1d1e27,#0d0e13);border:1px solid rgba(255,255,255,.15);font-size:38px;font-weight:850;letter-spacing:-1px;box-shadow:0 12px 34px rgba(0,0,0,.38)}
+    .status{position:absolute;right:4px;bottom:7px;width:18px;height:18px;border-radius:50%;background:#35e58a;border:3px solid #0b0c11}
+
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.055);color:#d9d9e3;font-size:12px;font-weight:700;backdrop-filter:blur(14px)}
+    h1{margin:12px 0 6px;font-size:30px;line-height:1;letter-spacing:-1px}
+    .bio{margin:0 auto;max-width:340px;color:var(--muted);font-size:14px;line-height:1.6}
+
+    .card{margin-top:14px;padding:18px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.055));box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+    .card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+    .card-title{margin:0;font-size:16px;letter-spacing:-.2px}
+    .tag{padding:6px 9px;border-radius:999px;background:rgba(255,79,163,.13);border:1px solid rgba(255,79,163,.28);color:#ff9dca;font-size:11px;font-weight:800}
+
+    .vote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .vote-btn{position:relative;min-height:84px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.055);color:#fff;cursor:pointer;transition:transform .18s ease,border-color .18s ease,background .18s ease;overflow:hidden}
+    .vote-btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.24)}
+    .vote-btn.active{background:linear-gradient(145deg,rgba(255,79,163,.28),rgba(139,92,246,.28));border-color:rgba(255,255,255,.34)}
+    .vote-num{display:block;font-size:28px;font-weight:900;line-height:1;margin-bottom:6px}
+    .vote-label{display:block;color:#cfcfda;font-size:12px;font-weight:700}
+    .result{margin:13px 2px 0;text-align:center;color:#bfc0cb;font-size:12px;min-height:18px}
+
+    .sponsor-card{position:relative;overflow:hidden}
+    .sponsor-card::before{content:"";position:absolute;inset:auto -30px -70px auto;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,163,.24),transparent 65%);pointer-events:none}
+    .sponsor-copy{position:relative;z-index:1;margin-bottom:15px}
+    .sponsor-copy strong{display:block;font-size:18px;letter-spacing:-.3px;margin-bottom:4px}
+    .sponsor-copy span{display:block;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .cta{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:16px 17px;border:0;border-radius:18px;text-decoration:none;color:#101014;font-size:14px;font-weight:900;background:linear-gradient(90deg,#fff,#f1e8ff 52%,#ffe5f3);box-shadow:0 12px 28px rgba(255,255,255,.11);transition:transform .18s ease,box-shadow .18s ease}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,255,255,.16)}
+    .cta small{display:block;margin-top:3px;color:#666674;font-size:10px;font-weight:700}
+    .arrow{display:grid;place-items:center;width:34px;height:34px;border-radius:12px;background:#111219;color:#fff;font-size:17px;flex:0 0 auto}
+
+    .trust{display:flex;align-items:flex-start;gap:9px;margin:12px 2px 0;color:#8f90a0;font-size:11px;line-height:1.5}
+    .trust-dot{width:7px;height:7px;border-radius:50%;background:#35e58a;margin-top:5px;flex:0 0 auto;box-shadow:0 0 0 4px rgba(53,229,138,.08)}
+
+    footer{text-align:center;margin-top:22px;color:#666775;font-size:11px}
+
+    @media (max-width:360px){
+      .shell{padding-left:14px;padding-right:14px}
+      h1{font-size:27px}
+      .vote-btn{min-height:76px}
+    }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="profile">
-      <div class="avatar">M</div>
-      <h1>Marcello Links</h1>
-      <p class="bio">Vote outfit favoritmu dan temukan link resmi di sini.</p>
-    </section>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main class="shell">
+    <header class="top">
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar">M</div>
+        <span class="status" aria-label="online"></span>
+      </div>
+      <span class="eyebrow">✨ daily picks</span>
+      <h1>Marcello</h1>
+      <p class="bio">Pilih outfit favoritmu dan temukan link resmi dari halaman ini.</p>
+    </header>
 
     <section class="card">
-      <h2>🔥 Pilih outfit favorit</h2>
-      <div class="vote" id="vote">
-        <button type="button" data-choice="1">Outfit 1</button>
-        <button type="button" data-choice="2">Outfit 2</button>
-        <button type="button" data-choice="3">Outfit 3</button>
+      <div class="card-head">
+        <h2 class="card-title">Outfit mana yang paling cocok?</h2>
+        <span class="tag">VOTE</span>
       </div>
-      <div class="result" id="result">Pilih salah satu 👆</div>
+      <div class="vote-grid" id="vote">
+        <button class="vote-btn" type="button" data-choice="1"><span class="vote-num">1</span><span class="vote-label">Outfit</span></button>
+        <button class="vote-btn" type="button" data-choice="2"><span class="vote-num">2</span><span class="vote-label">Outfit</span></button>
+        <button class="vote-btn" type="button" data-choice="3"><span class="vote-num">3</span><span class="vote-label">Outfit</span></button>
+      </div>
+      <div class="result" id="result">Tap pilihanmu 👆</div>
     </section>
 
-    <section class="card">
-      <h2>Links</h2>
-      <div class="links">
-        <a class="link sponsor" href="https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a" id="sponsor" target="_blank" rel="sponsored nofollow noopener noreferrer">
-          <span>⭐ Sponsored / Support</span><span>↗</span>
-        </a>
+    <section class="card sponsor-card">
+      <div class="card-head">
+        <h2 class="card-title">Support & Sponsor</h2>
+        <span class="tag">SPONSORED</span>
       </div>
-      <p class="note">Tautan sponsor membuka penawaran pihak ketiga di tab baru. Konten dan tujuan akhir dikelola oleh jaringan iklan.</p>
+      <div class="sponsor-copy">
+        <strong>Dukung halaman ini ✨</strong>
+        <span>Membuka penawaran sponsor pihak ketiga di tab baru.</span>
+      </div>
+      <a class="cta" href="https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a" target="_blank" rel="sponsored nofollow noopener noreferrer">
+        <span>Buka Sponsored Link<small>External sponsored destination</small></span>
+        <span class="arrow">↗</span>
+      </a>
+      <div class="trust"><span class="trust-dot"></span><span>Link sponsor ditandai dengan jelas agar pengunjung tahu mereka akan membuka situs pihak ketiga.</span></div>
     </section>
 
-    <footer>© 2026 Marcello</footer>
+    <footer>© 2026 Marcello • Official links</footer>
   </main>
 
   <script>
     const result = document.getElementById('result');
-    document.querySelectorAll('#vote button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#vote button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        localStorage.setItem('marcello-outfit-vote', btn.dataset.choice);
-        result.textContent = `Kamu memilih Outfit ${btn.dataset.choice} ✨`;
-      });
-    });
-    const saved = localStorage.getItem('marcello-outfit-vote');
-    if (saved) {
-      const btn = document.querySelector(`#vote button[data-choice="${saved}"]`);
-      if (btn) { btn.classList.add('active'); result.textContent = `Pilihanmu: Outfit ${saved} ✨`; }
+    const buttons = [...document.querySelectorAll('#vote .vote-btn')];
+
+    function selectVote(choice, restored = false) {
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.choice === choice));
+      if (!restored) localStorage.setItem('marcello-outfit-vote', choice);
+      result.textContent = restored ? `Pilihanmu: Outfit ${choice} ✨` : `Kamu memilih Outfit ${choice} ✨`;
     }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => selectVote(btn.dataset.choice)));
+
+    const saved = localStorage.getItem('marcello-outfit-vote');
+    if (saved && ['1','2','3'].includes(saved)) selectVote(saved, true);
   </script>
 </body>
 </html>
