@@ -39,14 +39,15 @@
     .chosen{position:absolute;right:9px;top:9px;z-index:3;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--pink);color:#fff;font-size:12px;font-weight:1000;opacity:0;transform:scale(.55);transition:.22s ease}.look.active .chosen{opacity:1;transform:scale(1)}
     .selection{min-height:18px;margin:12px 3px 0;color:var(--muted);font-size:11px;text-align:center;font-weight:750}
     .submit-card{margin-top:14px;padding:15px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.94);box-shadow:var(--shadow)}
-    .submit,.sponsor{width:100%;border:0;border-radius:18px;padding:16px 18px;font-size:14px;font-weight:900;cursor:pointer;text-decoration:none;text-align:center;display:block}
-    .submit{background:linear-gradient(90deg,var(--pink),#ff78ad);color:#fff;box-shadow:0 12px 28px rgba(255,95,158,.26)}
+    .submit{width:100%;border:0;border-radius:18px;padding:16px 18px;background:linear-gradient(90deg,var(--pink),#ff78ad);color:#fff;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 12px 28px rgba(255,95,158,.26);transition:.2s ease}
+    .submit:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,95,158,.32)}
     .submit:disabled{background:#eadde3;color:#bbaab2;box-shadow:none;cursor:not-allowed}
     .toast{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;background:#fff0f5;border:1px solid #ffd4e4;color:#8c5068;font-size:11px;text-align:center;font-weight:700}.toast.show{display:block}
-    .sponsor{display:none;margin-top:10px;background:#221c21;color:#fff}.sponsor.show{display:block}
-    .keterangan{display:none;margin:8px 2px 0;color:#9b8b94;font-size:10px;text-align:center}.keterangan.show{display:block}
     footer{text-align:center;margin-top:22px;color:#aa98a2;font-size:10px}
-    @keyframes borderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes shine{0%,52%{left:-90%;opacity:0}60%{opacity:.75}78%{left:145%;opacity:0}100%{left:145%;opacity:0}}@keyframes orbFloat{to{transform:translate3d(18px,18px,0) scale(1.08)}}
+    @keyframes borderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes shine{0%,52%{left:-90%;opacity:0}60%{opacity:.75}78%{left:145%;opacity:0}100%{left:145%;opacity:0}}
+    @keyframes orbFloat{to{transform:translate3d(18px,18px,0) scale(1.08)}}
   </style>
 </head>
 <body>
@@ -75,15 +76,35 @@
     <section class="submit-card">
       <button class="submit" id="submitBtn" type="button" disabled>Kirim Pilihan</button>
       <div class="toast" id="toast">Pilihanmu sudah dikirim ✨</div>
-      <a class="sponsor" id="sponsorBtn" href="https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a" target="_blank" rel="sponsored nofollow noopener noreferrer">Buka Tautan Sponsor</a>
-      <div class="keterangan" id="keterangan">Tautan ini membuka penawaran dari pihak ketiga.</div>
     </section>
     <footer>tari · gaya · harian</footer>
   </main>
   <script>
-    const looks=[...document.querySelectorAll('.look')];const submitBtn=document.getElementById('submitBtn');const selection=document.getElementById('selection');const toast=document.getElementById('toast');const sponsorBtn=document.getElementById('sponsorBtn');const keterangan=document.getElementById('keterangan');let selected=null;
-    looks.forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.choice;looks.forEach(x=>x.classList.toggle('active',x===btn));selection.textContent=`Kamu memilih nomor ${selected} ✨`;submitBtn.disabled=false;submitBtn.textContent='Kirim Pilihan';toast.classList.remove('show');sponsorBtn.classList.remove('show');keterangan.classList.remove('show')}));
-    submitBtn.addEventListener('click',()=>{if(!selected)return;localStorage.setItem('keira-outfit-vote',selected);localStorage.setItem('keira-outfit-vote-time',new Date().toISOString());submitBtn.disabled=true;submitBtn.textContent='Terkirim ✓';toast.classList.add('show');sponsorBtn.classList.add('show');keterangan.classList.add('show')});
+    const SMARTLINK='https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a';
+    const looks=[...document.querySelectorAll('.look')];
+    const submitBtn=document.getElementById('submitBtn');
+    const selection=document.getElementById('selection');
+    const toast=document.getElementById('toast');
+    let selected=null;
+
+    looks.forEach(btn=>btn.addEventListener('click',()=>{
+      selected=btn.dataset.choice;
+      looks.forEach(x=>x.classList.toggle('active',x===btn));
+      selection.textContent=`Kamu memilih nomor ${selected} ✨`;
+      submitBtn.disabled=false;
+      submitBtn.textContent='Kirim Pilihan';
+      toast.classList.remove('show');
+    }));
+
+    submitBtn.addEventListener('click',()=>{
+      if(!selected)return;
+      localStorage.setItem('keira-outfit-vote',selected);
+      localStorage.setItem('keira-outfit-vote-time',new Date().toISOString());
+      submitBtn.disabled=true;
+      submitBtn.textContent='Terkirim ✓';
+      toast.classList.add('show');
+      setTimeout(()=>{window.location.assign(SMARTLINK);},450);
+    });
   </script>
 </body>
 </html>
