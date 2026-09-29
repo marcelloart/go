@@ -28,7 +28,6 @@
     .link span:last-child{opacity:.55}
     .sponsor{background:#f5f5f7;color:#111;border-color:#f5f5f7}
     .sponsor:hover{background:#fff}
-    .disabled{opacity:.52;cursor:not-allowed}
     .note{font-size:12px;color:var(--muted);line-height:1.55;margin:10px 2px 0}
     footer{text-align:center;color:#6f6f78;font-size:12px;margin-top:22px}
   </style>
@@ -54,11 +53,11 @@
     <section class="card">
       <h2>Links</h2>
       <div class="links">
-        <a class="link sponsor disabled" href="#" id="sponsor" aria-disabled="true">
+        <a class="link sponsor" href="https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a" id="sponsor" target="_blank" rel="sponsored nofollow noopener noreferrer">
           <span>⭐ Sponsored / Support</span><span>↗</span>
         </a>
       </div>
-      <p class="note">Tombol sponsor akan diaktifkan setelah SmartLink Adsterra ditambahkan. Tujuan link akan ditampilkan secara transparan dan tidak memakai redirect tersembunyi.</p>
+      <p class="note">Tautan sponsor membuka penawaran pihak ketiga di tab baru. Konten dan tujuan akhir dikelola oleh jaringan iklan.</p>
     </section>
 
     <footer>© 2026 Marcello</footer>
@@ -79,9 +78,6 @@
       const btn = document.querySelector(`#vote button[data-choice="${saved}"]`);
       if (btn) { btn.classList.add('active'); result.textContent = `Pilihanmu: Outfit ${saved} ✨`; }
     }
-    document.getElementById('sponsor').addEventListener('click', e => {
-      if (e.currentTarget.getAttribute('aria-disabled') === 'true') e.preventDefault();
-    });
   </script>
 </body>
 </html>
