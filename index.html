@@ -16,6 +16,8 @@
       --pink2:#ff9fc3;
       --rose:#ffe4ef;
       --line:#f0dbe4;
+      --purple:#9d78ff;
+      --blue:#70d4ff;
       --shadow:0 18px 50px rgba(107,54,77,.12);
     }
     *{box-sizing:border-box}
@@ -25,8 +27,8 @@
       radial-gradient(circle at 94% 12%,rgba(255,180,210,.22),transparent 30%),
       linear-gradient(180deg,#fff9fc 0%,#fff5f9 100%)}
     .orb{position:fixed;border-radius:999px;filter:blur(60px);pointer-events:none;opacity:.5;z-index:0}
-    .orb.a{width:180px;height:180px;background:#ffc2d8;left:-70px;top:18%}
-    .orb.b{width:210px;height:210px;background:#ffddeb;right:-90px;bottom:10%}
+    .orb.a{width:180px;height:180px;background:#ffc2d8;left:-70px;top:18%;animation:orbFloat 9s ease-in-out infinite alternate}
+    .orb.b{width:210px;height:210px;background:#e6d6ff;right:-90px;bottom:10%;animation:orbFloat 11s ease-in-out infinite alternate-reverse}
     .wrap{position:relative;z-index:1;width:min(100%,480px);margin:0 auto;padding:24px 16px 44px}
     .top{text-align:center;padding:6px 10px 20px}
     .avatar{width:86px;height:86px;margin:0 auto 13px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(145deg,#fff,#ffe3ef);border:1px solid var(--line);box-shadow:var(--shadow);font-size:42px;transform:rotate(-2deg)}
@@ -39,23 +41,95 @@
     .hero strong{position:relative;z-index:1;display:block;margin-top:8px;max-width:290px;font-size:30px;line-height:1.02;letter-spacing:-1px}
     .hero p{position:relative;z-index:1;margin:9px 0 0;max-width:310px;font-size:12px;line-height:1.5;opacity:.92}
     .section{margin-top:18px}
-    .section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 3px 10px}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 3px 12px}
     .section-title h2{margin:0;font-size:20px;letter-spacing:-.5px}
     .section-title span{font-size:10px;color:var(--muted);font-weight:700}
-    .looks{display:grid;gap:11px}
-    .look{position:relative;width:100%;display:grid;grid-template-columns:86px 1fr 36px;align-items:center;gap:13px;padding:11px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.92);box-shadow:0 12px 35px rgba(99,49,72,.075);color:var(--ink);cursor:pointer;text-align:left;transition:.2s ease}
-    .look:hover{transform:translateY(-2px)}
-    .look.active{border-color:#ff8db7;box-shadow:0 0 0 3px rgba(255,95,158,.09),0 15px 36px rgba(255,95,158,.15)}
-    .thumb{height:94px;border-radius:18px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.6)}
-    .one{background:linear-gradient(145deg,#ffbfd5,#ff7cae)}
-    .two{background:linear-gradient(145deg,#dbc8ff,#9d80ff)}
-    .three{background:linear-gradient(145deg,#bfe9ff,#72c9f5)}
-    .doll{position:absolute;left:50%;top:15px;transform:translateX(-50%);width:36px;height:58px;border-radius:18px 18px 14px 14px;background:#fff8fb;box-shadow:0 -12px 0 -4px #fff8fb}
-    .doll::before,.doll::after{content:"";position:absolute;top:13px;width:24px;height:10px;border-radius:8px;background:inherit}.doll::before{right:24px;transform:rotate(-25deg)}.doll::after{left:24px;transform:rotate(25deg)}
-    .look b{display:block;font-size:15px;letter-spacing:-.2px}.look em{display:block;margin-top:4px;color:var(--muted);font-style:normal;font-size:11px;line-height:1.45}
-    .check{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:#fff;color:#b49ba7;font-size:13px;font-weight:900;transition:.2s ease}
-    .look.active .check{background:var(--pink);border-color:var(--pink);color:#fff;transform:scale(1.03)}
-    .selection{min-height:18px;margin:10px 3px 0;color:var(--muted);font-size:11px}
+
+    .looks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .look{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      min-height:126px;
+      border:0;
+      border-radius:24px;
+      padding:2px;
+      cursor:pointer;
+      background:linear-gradient(120deg,#ff7eaf,#ffb7d0,#aa8cff,#7ddcff,#ff7eaf);
+      background-size:300% 300%;
+      box-shadow:0 13px 34px rgba(112,60,82,.10);
+      animation:borderShift 8s linear infinite;
+      transition:transform .24s ease,box-shadow .24s ease;
+    }
+    .look::before{
+      content:"";
+      position:absolute;
+      inset:2px;
+      z-index:-1;
+      border-radius:22px;
+      background:linear-gradient(150deg,rgba(255,255,255,.98),rgba(255,245,250,.96));
+      transition:background .24s ease;
+    }
+    .look::after{
+      content:"";
+      position:absolute;
+      top:-35%;
+      left:-90%;
+      width:55%;
+      height:170%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),transparent);
+      transform:rotate(18deg);
+      animation:shine 4.8s ease-in-out infinite;
+      pointer-events:none;
+      opacity:.7;
+    }
+    .look:nth-child(2){animation-delay:-2.6s}
+    .look:nth-child(3){animation-delay:-5.2s}
+    .look:hover{transform:translateY(-4px) scale(1.025);box-shadow:0 20px 40px rgba(255,95,158,.18)}
+    .look:active{transform:scale(.98)}
+    .look.active{transform:translateY(-3px) scale(1.035);box-shadow:0 0 0 4px rgba(255,95,158,.09),0 20px 42px rgba(255,95,158,.22)}
+    .look.active::before{background:linear-gradient(145deg,#fff,#fff0f6)}
+
+    .look-content{position:relative;z-index:2;display:flex;min-height:122px;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .look-word{display:block;font-size:10px;font-weight:950;letter-spacing:.22em;text-transform:uppercase;color:#9e8792;margin-left:.22em}
+    .look-number{
+      display:block;
+      margin-top:4px;
+      font-size:54px;
+      line-height:.9;
+      font-weight:1000;
+      letter-spacing:-.07em;
+      background:linear-gradient(110deg,#ff3f8d 0%,#ff83b2 32%,#9867ff 65%,#3ec7ff 100%);
+      background-size:220% 220%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:textFlow 4.5s ease-in-out infinite;
+      filter:drop-shadow(0 6px 14px rgba(255,95,158,.16));
+    }
+    .look.active .look-number{animation:textFlow 2.2s ease-in-out infinite,numberPulse 1.45s ease-in-out infinite}
+    .chosen{
+      position:absolute;
+      right:9px;
+      top:9px;
+      z-index:3;
+      width:23px;
+      height:23px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--pink);
+      color:#fff;
+      font-size:12px;
+      font-weight:1000;
+      opacity:0;
+      transform:scale(.55) rotate(-20deg);
+      transition:.22s ease;
+      box-shadow:0 7px 18px rgba(255,95,158,.3)
+    }
+    .look.active .chosen{opacity:1;transform:scale(1) rotate(0)}
+    .selection{min-height:18px;margin:12px 3px 0;color:var(--muted);font-size:11px;text-align:center;font-weight:750}
+
     .submit-card{margin-top:14px;padding:15px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.94);box-shadow:var(--shadow)}
     .submit{width:100%;border:0;border-radius:18px;padding:16px 18px;background:linear-gradient(90deg,var(--pink),#ff78ad);color:#fff;font-size:14px;font-weight:900;letter-spacing:.01em;cursor:pointer;box-shadow:0 12px 28px rgba(255,95,158,.26);transition:.2s ease}
     .submit:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,95,158,.32)}
@@ -63,8 +137,23 @@
     .toast{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;background:#fff0f5;border:1px solid #ffd4e4;color:#8c5068;font-size:11px;text-align:center;font-weight:700}
     .toast.show{display:block}
     footer{text-align:center;margin-top:22px;color:#aa98a2;font-size:10px}
-    @media(max-width:360px){.wrap{padding-left:13px;padding-right:13px}.hero strong{font-size:27px}.look{grid-template-columns:78px 1fr 34px}.thumb{height:88px}}
-    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+    @keyframes borderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes shine{0%,52%{left:-90%;opacity:0}60%{opacity:.75}78%{left:145%;opacity:0}100%{left:145%;opacity:0}}
+    @keyframes numberPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+    @keyframes orbFloat{to{transform:translate3d(18px,18px,0) scale(1.08)}}
+
+    @media(max-width:360px){
+      .wrap{padding-left:13px;padding-right:13px}
+      .hero strong{font-size:27px}
+      .looks{gap:8px}
+      .look{min-height:116px;border-radius:21px}
+      .look::before{border-radius:19px}
+      .look-content{min-height:112px}
+      .look-number{font-size:48px}
+    }
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
   </style>
 </head>
 <body>
@@ -86,20 +175,17 @@
     <section class="section">
       <div class="section-title"><h2>Pilih outfit favoritmu</h2><span>1 pilihan</span></div>
       <div class="looks" id="vote">
-        <button class="look" type="button" data-choice="1">
-          <span class="thumb one"><i class="doll"></i></span>
-          <span><b>Outfit 01 — Pink Mood</b><em>Manis, playful, dan bright.</em></span>
-          <span class="check">1</span>
+        <button class="look" type="button" data-choice="1" aria-label="Pilih Outfit 1">
+          <span class="chosen">✓</span>
+          <span class="look-content"><span class="look-word">Outfit</span><span class="look-number">1</span></span>
         </button>
-        <button class="look" type="button" data-choice="2">
-          <span class="thumb two"><i class="doll"></i></span>
-          <span><b>Outfit 02 — Soft Purple</b><em>Clean, cute, dan sedikit dreamy.</em></span>
-          <span class="check">2</span>
+        <button class="look" type="button" data-choice="2" aria-label="Pilih Outfit 2">
+          <span class="chosen">✓</span>
+          <span class="look-content"><span class="look-word">Outfit</span><span class="look-number">2</span></span>
         </button>
-        <button class="look" type="button" data-choice="3">
-          <span class="thumb three"><i class="doll"></i></span>
-          <span><b>Outfit 03 — Sky Pop</b><em>Fresh, fun, dan paling standout.</em></span>
-          <span class="check">3</span>
+        <button class="look" type="button" data-choice="3" aria-label="Pilih Outfit 3">
+          <span class="chosen">✓</span>
+          <span class="look-content"><span class="look-word">Outfit</span><span class="look-number">3</span></span>
         </button>
       </div>
       <div class="selection" id="selection">Belum ada pilihan.</div>
@@ -127,6 +213,7 @@
         looks.forEach(x => x.classList.toggle('active', x === btn));
         selection.textContent = `Pilihanmu: Outfit ${selected} ✨`;
         submitBtn.disabled = false;
+        submitBtn.textContent = 'Kirim Pilihan';
         toast.classList.remove('show');
       });
     });
