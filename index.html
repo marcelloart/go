@@ -4,156 +4,49 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#fff8fb" />
-  <meta name="description" content="Pilih outfit favoritmu hari ini." />
-  <title>Keira Daily — Pilih Outfit</title>
+  <meta name="description" content="Bantu pilih gaya favorit hari ini." />
+  <title>Keira Daily — Pilih Gaya</title>
   <style>
-    :root{
-      --bg:#fff8fb;
-      --card:#ffffff;
-      --ink:#211821;
-      --muted:#8b7d87;
-      --pink:#ff5f9e;
-      --pink2:#ff9fc3;
-      --rose:#ffe4ef;
-      --line:#f0dbe4;
-      --purple:#9d78ff;
-      --blue:#70d4ff;
-      --shadow:0 18px 50px rgba(107,54,77,.12);
-    }
+    :root{--bg:#fff8fb;--ink:#211821;--muted:#8b7d87;--pink:#ff5f9e;--line:#f0dbe4;--shadow:0 18px 50px rgba(107,54,77,.12)}
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-    body{overflow-x:hidden;background:
-      radial-gradient(circle at 8% 4%,rgba(255,95,158,.12),transparent 28%),
-      radial-gradient(circle at 94% 12%,rgba(255,180,210,.22),transparent 30%),
-      linear-gradient(180deg,#fff9fc 0%,#fff5f9 100%)}
+    body{overflow-x:hidden;background:radial-gradient(circle at 8% 4%,rgba(255,95,158,.12),transparent 28%),radial-gradient(circle at 94% 12%,rgba(255,180,210,.22),transparent 30%),linear-gradient(180deg,#fff9fc 0%,#fff5f9 100%)}
     .orb{position:fixed;border-radius:999px;filter:blur(60px);pointer-events:none;opacity:.5;z-index:0}
     .orb.a{width:180px;height:180px;background:#ffc2d8;left:-70px;top:18%;animation:orbFloat 9s ease-in-out infinite alternate}
     .orb.b{width:210px;height:210px;background:#e6d6ff;right:-90px;bottom:10%;animation:orbFloat 11s ease-in-out infinite alternate-reverse}
     .wrap{position:relative;z-index:1;width:min(100%,480px);margin:0 auto;padding:24px 16px 44px}
     .top{text-align:center;padding:6px 10px 20px}
     .avatar{width:86px;height:86px;margin:0 auto 13px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(145deg,#fff,#ffe3ef);border:1px solid var(--line);box-shadow:var(--shadow);font-size:42px;transform:rotate(-2deg)}
-    .handle{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 7px 24px rgba(109,54,79,.07);font-size:11px;font-weight:800;color:#6f5f69;letter-spacing:.03em}
+    .handle{display:inline-flex;padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 7px 24px rgba(109,54,79,.07);font-size:11px;font-weight:800;color:#6f5f69}
     h1{margin:13px 0 6px;font-size:34px;line-height:1;letter-spacing:-1.4px}
     .bio{margin:0 auto;max-width:340px;color:var(--muted);font-size:13px;line-height:1.55}
     .hero{position:relative;overflow:hidden;margin-top:8px;padding:22px;border-radius:30px;background:linear-gradient(145deg,#ff6aa6,#ff9fc3);color:white;box-shadow:0 22px 60px rgba(255,95,158,.26)}
     .hero::after{content:"♡";position:absolute;right:-8px;top:-30px;font-size:150px;line-height:1;color:rgba(255,255,255,.15);transform:rotate(12deg)}
     .hero small{position:relative;z-index:1;display:block;font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;opacity:.86}
-    .hero strong{position:relative;z-index:1;display:block;margin-top:8px;max-width:300px;font-size:30px;line-height:1.05;letter-spacing:-.8px}
-    .hero p{position:relative;z-index:1;margin:9px 0 0;max-width:310px;font-size:12px;line-height:1.5;opacity:.94}
+    .hero strong{position:relative;z-index:1;display:block;margin-top:8px;max-width:315px;font-size:29px;line-height:1.08;letter-spacing:-.8px}
+    .hero p{position:relative;z-index:1;margin:9px 0 0;font-size:12px;opacity:.94}
     .section{margin-top:18px}
     .section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 3px 12px}
-    .section-title h2{margin:0;font-size:20px;letter-spacing:-.5px}
-    .section-title span{font-size:10px;color:var(--muted);font-weight:700}
-
+    .section-title h2{margin:0;font-size:20px;letter-spacing:-.5px}.section-title span{font-size:10px;color:var(--muted);font-weight:700}
     .looks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .look{
-      position:relative;
-      isolation:isolate;
-      overflow:hidden;
-      min-height:126px;
-      border:0;
-      border-radius:24px;
-      padding:2px;
-      cursor:pointer;
-      background:linear-gradient(120deg,#ff7eaf,#ffb7d0,#aa8cff,#7ddcff,#ff7eaf);
-      background-size:300% 300%;
-      box-shadow:0 13px 34px rgba(112,60,82,.10);
-      animation:borderShift 8s linear infinite;
-      transition:transform .24s ease,box-shadow .24s ease;
-    }
-    .look::before{
-      content:"";
-      position:absolute;
-      inset:2px;
-      z-index:-1;
-      border-radius:22px;
-      background:linear-gradient(150deg,rgba(255,255,255,.98),rgba(255,245,250,.96));
-      transition:background .24s ease;
-    }
-    .look::after{
-      content:"";
-      position:absolute;
-      top:-35%;
-      left:-90%;
-      width:55%;
-      height:170%;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),transparent);
-      transform:rotate(18deg);
-      animation:shine 4.8s ease-in-out infinite;
-      pointer-events:none;
-      opacity:.7;
-    }
-    .look:nth-child(2){animation-delay:-2.6s}
-    .look:nth-child(3){animation-delay:-5.2s}
-    .look:hover{transform:translateY(-4px) scale(1.025);box-shadow:0 20px 40px rgba(255,95,158,.18)}
-    .look:active{transform:scale(.98)}
-    .look.active{transform:translateY(-3px) scale(1.035);box-shadow:0 0 0 4px rgba(255,95,158,.09),0 20px 42px rgba(255,95,158,.22)}
-    .look.active::before{background:linear-gradient(145deg,#fff,#fff0f6)}
-
+    .look{position:relative;isolation:isolate;overflow:hidden;min-height:126px;border:0;border-radius:24px;padding:2px;cursor:pointer;background:linear-gradient(120deg,#ff7eaf,#ffb7d0,#aa8cff,#7ddcff,#ff7eaf);background-size:300% 300%;box-shadow:0 13px 34px rgba(112,60,82,.10);animation:borderShift 8s linear infinite;transition:.24s ease}
+    .look::before{content:"";position:absolute;inset:2px;z-index:-1;border-radius:22px;background:linear-gradient(150deg,rgba(255,255,255,.98),rgba(255,245,250,.96))}
+    .look::after{content:"";position:absolute;top:-35%;left:-90%;width:55%;height:170%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),transparent);transform:rotate(18deg);animation:shine 4.8s ease-in-out infinite;pointer-events:none}
+    .look:nth-child(2){animation-delay:-2.6s}.look:nth-child(3){animation-delay:-5.2s}.look:hover{transform:translateY(-4px) scale(1.025)}.look.active{transform:translateY(-3px) scale(1.035);box-shadow:0 0 0 4px rgba(255,95,158,.09),0 20px 42px rgba(255,95,158,.22)}
     .look-content{position:relative;z-index:2;display:flex;min-height:122px;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-    .look-word{display:block;font-size:10px;font-weight:950;letter-spacing:.22em;text-transform:uppercase;color:#9e8792;margin-left:.22em}
-    .look-number{
-      display:block;
-      margin-top:4px;
-      font-size:54px;
-      line-height:.9;
-      font-weight:1000;
-      letter-spacing:-.07em;
-      background:linear-gradient(110deg,#ff3f8d 0%,#ff83b2 32%,#9867ff 65%,#3ec7ff 100%);
-      background-size:220% 220%;
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      animation:textFlow 4.5s ease-in-out infinite;
-      filter:drop-shadow(0 6px 14px rgba(255,95,158,.16));
-    }
-    .look.active .look-number{animation:textFlow 2.2s ease-in-out infinite,numberPulse 1.45s ease-in-out infinite}
-    .chosen{
-      position:absolute;
-      right:9px;
-      top:9px;
-      z-index:3;
-      width:23px;
-      height:23px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:var(--pink);
-      color:#fff;
-      font-size:12px;
-      font-weight:1000;
-      opacity:0;
-      transform:scale(.55) rotate(-20deg);
-      transition:.22s ease;
-      box-shadow:0 7px 18px rgba(255,95,158,.3)
-    }
-    .look.active .chosen{opacity:1;transform:scale(1) rotate(0)}
+    .look-word{font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase;color:#9e8792}
+    .look-number{display:block;margin-top:4px;font-size:54px;line-height:.9;font-weight:1000;letter-spacing:-.07em;background:linear-gradient(110deg,#ff3f8d 0%,#ff83b2 32%,#9867ff 65%,#3ec7ff 100%);background-size:220% 220%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:textFlow 4.5s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(255,95,158,.16))}
+    .chosen{position:absolute;right:9px;top:9px;z-index:3;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--pink);color:#fff;font-size:12px;font-weight:1000;opacity:0;transform:scale(.55);transition:.22s ease}.look.active .chosen{opacity:1;transform:scale(1)}
     .selection{min-height:18px;margin:12px 3px 0;color:var(--muted);font-size:11px;text-align:center;font-weight:750}
-
     .submit-card{margin-top:14px;padding:15px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.94);box-shadow:var(--shadow)}
-    .submit{width:100%;border:0;border-radius:18px;padding:16px 18px;background:linear-gradient(90deg,var(--pink),#ff78ad);color:#fff;font-size:14px;font-weight:900;letter-spacing:.01em;cursor:pointer;box-shadow:0 12px 28px rgba(255,95,158,.26);transition:.2s ease}
-    .submit:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,95,158,.32)}
+    .submit,.sponsor{width:100%;border:0;border-radius:18px;padding:16px 18px;font-size:14px;font-weight:900;cursor:pointer;text-decoration:none;text-align:center;display:block}
+    .submit{background:linear-gradient(90deg,var(--pink),#ff78ad);color:#fff;box-shadow:0 12px 28px rgba(255,95,158,.26)}
     .submit:disabled{background:#eadde3;color:#bbaab2;box-shadow:none;cursor:not-allowed}
-    .toast{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;background:#fff0f5;border:1px solid #ffd4e4;color:#8c5068;font-size:11px;text-align:center;font-weight:700}
-    .toast.show{display:block}
+    .toast{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;background:#fff0f5;border:1px solid #ffd4e4;color:#8c5068;font-size:11px;text-align:center;font-weight:700}.toast.show{display:block}
+    .sponsor{display:none;margin-top:10px;background:#221c21;color:#fff}.sponsor.show{display:block}
+    .keterangan{display:none;margin:8px 2px 0;color:#9b8b94;font-size:10px;text-align:center}.keterangan.show{display:block}
     footer{text-align:center;margin-top:22px;color:#aa98a2;font-size:10px}
-
-    @keyframes borderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    @keyframes shine{0%,52%{left:-90%;opacity:0}60%{opacity:.75}78%{left:145%;opacity:0}100%{left:145%;opacity:0}}
-    @keyframes numberPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
-    @keyframes orbFloat{to{transform:translate3d(18px,18px,0) scale(1.08)}}
-
-    @media(max-width:360px){
-      .wrap{padding-left:13px;padding-right:13px}
-      .hero strong{font-size:27px}
-      .looks{gap:8px}
-      .look{min-height:116px;border-radius:21px}
-      .look::before{border-radius:19px}
-      .look-content{min-height:112px}
-      .look-number{font-size:48px}
-    }
-    @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+    @keyframes borderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes shine{0%,52%{left:-90%;opacity:0}60%{opacity:.75}78%{left:145%;opacity:0}100%{left:145%;opacity:0}}@keyframes orbFloat{to{transform:translate3d(18px,18px,0) scale(1.08)}}
   </style>
 </head>
 <body>
@@ -161,72 +54,36 @@
   <main class="wrap">
     <header class="top">
       <div class="avatar">🎀</div>
-      <div class="handle">@keiradaily · pilih outfit</div>
-      <h1>Kamu pilih yang mana? ♡</h1>
-      <p class="bio">Pilih satu outfit yang paling kamu suka.</p>
+      <div class="handle">@keiradaily · pilih gaya</div>
+      <h1>Bantu aku pilih, ya ♡</h1>
+      <p class="bio">Aku lagi bingung pilih yang mana. Kamu paling suka nomor berapa?</p>
     </header>
-
     <section class="hero">
-      <small>Pilihan hari ini</small>
-      <strong>Outfit 1, 2, atau 3?</strong>
-      <p>Pilih satu, lalu kirim pilihanmu.</p>
+      <small>Bantu pilih</small>
+      <strong>Menurutmu yang paling bagus nomor berapa?</strong>
+      <p>Pilih satu aja, ya.</p>
     </section>
-
     <section class="section">
-      <div class="section-title"><h2>Pilih outfit favoritmu</h2><span>Pilih satu</span></div>
+      <div class="section-title"><h2>Pilih satu</h2><span>1 pilihan</span></div>
       <div class="looks" id="vote">
-        <button class="look" type="button" data-choice="1" aria-label="Pilih Outfit 1">
-          <span class="chosen">✓</span>
-          <span class="look-content"><span class="look-word">Outfit</span><span class="look-number">1</span></span>
-        </button>
-        <button class="look" type="button" data-choice="2" aria-label="Pilih Outfit 2">
-          <span class="chosen">✓</span>
-          <span class="look-content"><span class="look-word">Outfit</span><span class="look-number">2</span></span>
-        </button>
-        <button class="look" type="button" data-choice="3" aria-label="Pilih Outfit 3">
-          <span class="chosen">✓</span>
-          <span class="look-content"><span class="look-word">Outfit</span><span class="look-number">3</span></span>
-        </button>
+        <button class="look" type="button" data-choice="1" aria-label="Pilih nomor 1"><span class="chosen">✓</span><span class="look-content"><span class="look-word">Nomor</span><span class="look-number">1</span></span></button>
+        <button class="look" type="button" data-choice="2" aria-label="Pilih nomor 2"><span class="chosen">✓</span><span class="look-content"><span class="look-word">Nomor</span><span class="look-number">2</span></span></button>
+        <button class="look" type="button" data-choice="3" aria-label="Pilih nomor 3"><span class="chosen">✓</span><span class="look-content"><span class="look-word">Nomor</span><span class="look-number">3</span></span></button>
       </div>
-      <div class="selection" id="selection">Belum ada pilihan.</div>
+      <div class="selection" id="selection">Belum memilih.</div>
     </section>
-
     <section class="submit-card">
       <button class="submit" id="submitBtn" type="button" disabled>Kirim Pilihan</button>
       <div class="toast" id="toast">Pilihanmu sudah dikirim ✨</div>
+      <a class="sponsor" id="sponsorBtn" href="https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a" target="_blank" rel="sponsored nofollow noopener noreferrer">Buka Tautan Sponsor</a>
+      <div class="keterangan" id="keterangan">Tautan ini membuka penawaran dari pihak ketiga.</div>
     </section>
-
-    <footer>outfit · gaya · harian</footer>
+    <footer>tari · gaya · harian</footer>
   </main>
-
   <script>
-    const SMARTLINK = 'https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a';
-    const looks = [...document.querySelectorAll('.look')];
-    const submitBtn = document.getElementById('submitBtn');
-    const selection = document.getElementById('selection');
-    const toast = document.getElementById('toast');
-    let selected = null;
-
-    looks.forEach(btn => {
-      btn.addEventListener('click', () => {
-        selected = btn.dataset.choice;
-        looks.forEach(x => x.classList.toggle('active', x === btn));
-        selection.textContent = `Pilihanmu: Outfit ${selected} ✨`;
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Kirim Pilihan';
-        toast.classList.remove('show');
-      });
-    });
-
-    submitBtn.addEventListener('click', () => {
-      if (!selected) return;
-      localStorage.setItem('keira-outfit-vote', selected);
-      localStorage.setItem('keira-outfit-vote-time', new Date().toISOString());
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Terkirim ✓';
-      toast.classList.add('show');
-      setTimeout(() => { window.location.href = SMARTLINK; }, 650);
-    });
+    const looks=[...document.querySelectorAll('.look')];const submitBtn=document.getElementById('submitBtn');const selection=document.getElementById('selection');const toast=document.getElementById('toast');const sponsorBtn=document.getElementById('sponsorBtn');const keterangan=document.getElementById('keterangan');let selected=null;
+    looks.forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.choice;looks.forEach(x=>x.classList.toggle('active',x===btn));selection.textContent=`Kamu memilih nomor ${selected} ✨`;submitBtn.disabled=false;submitBtn.textContent='Kirim Pilihan';toast.classList.remove('show');sponsorBtn.classList.remove('show');keterangan.classList.remove('show')}));
+    submitBtn.addEventListener('click',()=>{if(!selected)return;localStorage.setItem('keira-outfit-vote',selected);localStorage.setItem('keira-outfit-vote-time',new Date().toISOString());submitBtn.disabled=true;submitBtn.textContent='Terkirim ✓';toast.classList.add('show');sponsorBtn.classList.add('show');keterangan.classList.add('show')});
   </script>
 </body>
 </html>
