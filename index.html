@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#fff8fb" />
   <meta name="description" content="Pilih outfit favoritmu hari ini." />
-  <title>Keira Daily — Outfit Vote</title>
+  <title>Keira Daily — Pilih Outfit</title>
   <style>
     :root{
       --bg:#fff8fb;
@@ -37,9 +37,9 @@
     .bio{margin:0 auto;max-width:340px;color:var(--muted);font-size:13px;line-height:1.55}
     .hero{position:relative;overflow:hidden;margin-top:8px;padding:22px;border-radius:30px;background:linear-gradient(145deg,#ff6aa6,#ff9fc3);color:white;box-shadow:0 22px 60px rgba(255,95,158,.26)}
     .hero::after{content:"♡";position:absolute;right:-8px;top:-30px;font-size:150px;line-height:1;color:rgba(255,255,255,.15);transform:rotate(12deg)}
-    .hero small{position:relative;z-index:1;display:block;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;opacity:.86}
-    .hero strong{position:relative;z-index:1;display:block;margin-top:8px;max-width:290px;font-size:30px;line-height:1.02;letter-spacing:-1px}
-    .hero p{position:relative;z-index:1;margin:9px 0 0;max-width:310px;font-size:12px;line-height:1.5;opacity:.92}
+    .hero small{position:relative;z-index:1;display:block;font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;opacity:.86}
+    .hero strong{position:relative;z-index:1;display:block;margin-top:8px;max-width:300px;font-size:30px;line-height:1.05;letter-spacing:-.8px}
+    .hero p{position:relative;z-index:1;margin:9px 0 0;max-width:310px;font-size:12px;line-height:1.5;opacity:.94}
     .section{margin-top:18px}
     .section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 3px 12px}
     .section-title h2{margin:0;font-size:20px;letter-spacing:-.5px}
@@ -161,19 +161,19 @@
   <main class="wrap">
     <header class="top">
       <div class="avatar">🎀</div>
-      <div class="handle">@keiradaily · outfit vote</div>
-      <h1>Which look wins? ♡</h1>
-      <p class="bio">Pilih outfit yang paling kamu suka hari ini. Cuma satu pilihan ya ✨</p>
+      <div class="handle">@keiradaily · pilih outfit</div>
+      <h1>Kamu pilih yang mana? ♡</h1>
+      <p class="bio">Pilih satu outfit yang paling kamu suka.</p>
     </header>
 
     <section class="hero">
-      <small>today's pick</small>
-      <strong>1, 2, atau 3 — kamu tim yang mana?</strong>
-      <p>Tap salah satu outfit, lalu kirim pilihanmu di bawah.</p>
+      <small>Pilihan hari ini</small>
+      <strong>Outfit 1, 2, atau 3?</strong>
+      <p>Pilih satu, lalu kirim pilihanmu.</p>
     </section>
 
     <section class="section">
-      <div class="section-title"><h2>Pilih outfit favoritmu</h2><span>1 pilihan</span></div>
+      <div class="section-title"><h2>Pilih outfit favoritmu</h2><span>Pilih satu</span></div>
       <div class="looks" id="vote">
         <button class="look" type="button" data-choice="1" aria-label="Pilih Outfit 1">
           <span class="chosen">✓</span>
@@ -193,10 +193,10 @@
 
     <section class="submit-card">
       <button class="submit" id="submitBtn" type="button" disabled>Kirim Pilihan</button>
-      <div class="toast" id="toast">Pilihanmu tersimpan ✨ Membuka halaman sponsor…</div>
+      <div class="toast" id="toast">Pilihanmu sudah dikirim ✨</div>
     </section>
 
-    <footer>daily dance · outfit · mood</footer>
+    <footer>outfit · gaya · harian</footer>
   </main>
 
   <script>
