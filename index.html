@@ -6,6 +6,20 @@
   <meta name="theme-color" content="#fff8fb" />
   <meta name="description" content="Bantu pilih gaya favorit hari ini." />
   <title>Keira Daily — Pilih Gaya</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJD6HYMCJV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RJD6HYMCJV');
+    gtag('event', 'landing_view', {
+      page_location: window.location.href,
+      page_referrer: document.referrer || '(direct)'
+    });
+  </script>
+
   <style>
     :root{--bg:#fff8fb;--ink:#211821;--muted:#8b7d87;--pink:#ff5f9e;--line:#f0dbe4;--shadow:0 18px 50px rgba(107,54,77,.12)}
     *{box-sizing:border-box}
@@ -94,6 +108,13 @@
       submitBtn.disabled=false;
       submitBtn.textContent='Kirim Pilihan';
       toast.classList.remove('show');
+
+      if(typeof gtag==='function'){
+        gtag('event','vote_selected',{
+          choice:selected,
+          event_category:'vote_funnel'
+        });
+      }
     }));
 
     submitBtn.addEventListener('click',()=>{
@@ -103,6 +124,20 @@
       submitBtn.disabled=true;
       submitBtn.textContent='Terkirim ✓';
       toast.classList.add('show');
+
+      if(typeof gtag==='function'){
+        gtag('event','vote_submitted',{
+          choice:selected,
+          event_category:'vote_funnel'
+        });
+        gtag('event','smartlink_redirect',{
+          choice:selected,
+          event_category:'vote_funnel',
+          destination:'adsterra_smartlink',
+          transport_type:'beacon'
+        });
+      }
+
       setTimeout(()=>{window.location.assign(SMARTLINK);},450);
     });
   </script>
