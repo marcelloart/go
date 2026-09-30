@@ -7,7 +7,6 @@
   <meta name="description" content="Pilih nomor 1, 2, atau 3." />
   <title>Keira Daily — Pilih Favoritmu</title>
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJD6HYMCJV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,147 +20,91 @@
   </script>
 
   <style>
-    :root{
-      --bg:#fff7fb;
-      --ink:#231a22;
-      --muted:#887880;
-      --pink:#ff4f98;
-      --pink2:#ff86b6;
-      --line:#f0d9e3;
-      --shadow:0 18px 50px rgba(105,53,78,.13);
-    }
+    :root{--bg:#fff7fb;--ink:#241923;--muted:#8d7c85;--pink:#ff4d98;--pink2:#ff8ebc;--line:#f1dbe5;--shadow:0 18px 50px rgba(101,47,72,.13)}
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-    body{overflow-x:hidden;background:radial-gradient(circle at 10% 0%,rgba(255,92,155,.14),transparent 30%),radial-gradient(circle at 95% 8%,rgba(181,142,255,.13),transparent 28%),linear-gradient(180deg,#fffafd 0%,#fff5f9 100%)}
-    .wrap{width:min(100%,460px);min-height:100vh;margin:0 auto;padding:18px 16px 110px}
-    .brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-    .who{display:flex;align-items:center;gap:9px}
-    .avatar{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#fff,#ffe2ee);border:1px solid var(--line);box-shadow:0 10px 28px rgba(112,61,84,.09);font-size:21px}
-    .handle{font-size:12px;font-weight:900;color:#5f5058}.mini{font-size:10px;color:var(--muted);margin-top:1px}
-    .badge{padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:10px;font-weight:900;color:#8f6d7d}
-    .hero{position:relative;overflow:hidden;padding:20px 18px;border-radius:26px;background:linear-gradient(135deg,#ff4f98 0%,#ff78aa 56%,#ad7dff 140%);color:#fff;box-shadow:0 18px 45px rgba(255,79,152,.24)}
-    .hero:after{content:"♡";position:absolute;right:-10px;top:-36px;font-size:135px;line-height:1;color:rgba(255,255,255,.13);transform:rotate(12deg)}
-    .eyebrow{position:relative;z-index:1;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
-    h1{position:relative;z-index:1;margin:7px 0 7px;font-size:31px;line-height:1.02;letter-spacing:-1.1px}
-    .hero p{position:relative;z-index:1;margin:0;max-width:330px;font-size:12px;line-height:1.45;opacity:.96}
-    .question{margin:18px 2px 10px;display:flex;align-items:end;justify-content:space-between;gap:12px}
-    .question h2{margin:0;font-size:19px;letter-spacing:-.45px}.question span{font-size:10px;font-weight:800;color:var(--muted)}
-    .looks{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-    .look{position:relative;min-height:155px;border:1px solid var(--line);border-radius:25px;background:#fff;box-shadow:0 12px 30px rgba(102,51,76,.08);cursor:pointer;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-    .look:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 15%,rgba(255,89,154,.16),transparent 48%);opacity:.75}
-    .look:nth-child(2):before{background:radial-gradient(circle at 50% 15%,rgba(170,126,255,.18),transparent 48%)}
-    .look:nth-child(3):before{background:radial-gradient(circle at 50% 15%,rgba(91,190,255,.18),transparent 48%)}
-    .look.active{transform:translateY(-4px) scale(1.025);border-color:#ff6ba7;box-shadow:0 0 0 3px rgba(255,79,152,.12),0 18px 36px rgba(255,79,152,.18)}
-    .look-inner{position:relative;z-index:2;min-height:153px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-    .spark{font-size:19px;margin-bottom:3px;transform:translateY(-2px)}
-    .num{font-size:62px;line-height:.9;font-weight:1000;letter-spacing:-.08em;background:linear-gradient(135deg,#ff3f8d,#ff79ac 45%,#9f6cff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 14px rgba(255,79,152,.13))}
-    .label{margin-top:8px;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:#9a8590}
-    .check{position:absolute;right:8px;top:8px;z-index:3;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--pink);color:#fff;font-size:12px;font-weight:1000;opacity:0;transform:scale(.6);transition:.18s ease}.look.active .check{opacity:1;transform:scale(1)}
-    .selection{min-height:21px;margin:12px 0 0;text-align:center;font-size:11px;font-weight:850;color:var(--muted)}
-    .selection.ready{color:#a2436d}
-    .tip{margin:9px 0 0;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.78);border:1px solid var(--line);text-align:center;font-size:10px;line-height:1.4;color:#927f89}
-    .sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:11px 14px calc(11px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(255,247,251,0),rgba(255,247,251,.94) 28%,#fff7fb 58%)}
-    .sticky-inner{width:min(100%,460px);margin:0 auto}
-    .submit{width:100%;border:0;border-radius:18px;padding:16px 18px;background:linear-gradient(90deg,var(--pink),var(--pink2));color:#fff;font-size:14px;font-weight:950;cursor:pointer;box-shadow:0 12px 30px rgba(255,79,152,.26);transition:.18s ease}
-    .submit:not(:disabled):active{transform:scale(.985)}
-    .submit:disabled{background:#eadce3;color:#b9a7af;box-shadow:none;cursor:not-allowed}
-    .toast{display:none;margin:7px auto 0;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);width:max-content;max-width:95%;font-size:10px;font-weight:800;color:#8b596f}.toast.show{display:block}
-    footer{text-align:center;margin-top:18px;color:#b09ca6;font-size:9px}
+    body{overflow-x:hidden;background:radial-gradient(circle at 10% 0%,rgba(255,90,154,.16),transparent 34%),radial-gradient(circle at 95% 10%,rgba(169,126,255,.14),transparent 30%),linear-gradient(180deg,#fffafd,#fff5f9)}
+    .wrap{width:min(100%,440px);min-height:100vh;margin:0 auto;padding:18px 14px 28px;display:flex;flex-direction:column;justify-content:center}
+    .brand{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:16px}
+    .avatar{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);box-shadow:0 10px 26px rgba(112,61,84,.08);font-size:21px}
+    .handle{font-size:12px;font-weight:900;color:#66535d}
+    .hero{text-align:center;margin-bottom:18px}
+    .hero h1{margin:0;font-size:34px;line-height:1.02;letter-spacing:-1.2px}
+    .hero p{margin:9px auto 0;max-width:320px;color:var(--muted);font-size:13px;line-height:1.45}
+    .looks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .look{position:relative;overflow:hidden;min-height:190px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;padding:0}
+    .look:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.72)),radial-gradient(circle at 50% 15%,rgba(255,91,155,.34),transparent 44%)}
+    .look:nth-child(2):before{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.72)),radial-gradient(circle at 50% 15%,rgba(167,123,255,.35),transparent 44%)}
+    .look:nth-child(3):before{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.72)),radial-gradient(circle at 50% 15%,rgba(80,188,255,.34),transparent 44%)}
+    .look:active{transform:scale(.97)}
+    .look.selected{border-color:#ff67a4;box-shadow:0 0 0 4px rgba(255,77,152,.12),0 18px 42px rgba(255,77,152,.19)}
+    .inner{position:relative;z-index:2;min-height:188px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .emoji{font-size:26px;margin-bottom:6px}
+    .num{font-size:72px;line-height:.85;font-weight:1000;letter-spacing:-.09em;background:linear-gradient(135deg,#ff3286,#ff79ad 48%,#9867ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 7px 15px rgba(255,78,151,.15))}
+    .pick{margin-top:12px;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:10px;font-weight:950;color:#8f7180}
+    .hint{text-align:center;margin-top:15px;color:#8f7d86;font-size:11px;font-weight:750}
+    .status{display:none;margin:13px auto 0;width:max-content;max-width:100%;padding:9px 13px;border-radius:999px;background:#fff0f6;border:1px solid #ffd1e3;color:#95425f;font-size:11px;font-weight:900}.status.show{display:block}
+    footer{text-align:center;margin-top:18px;color:#b49fa9;font-size:9px}
+    @media(max-width:360px){.look{min-height:170px}.inner{min-height:168px}.num{font-size:64px}.hero h1{font-size:30px}}
   </style>
 </head>
 <body>
   <main class="wrap">
-    <div class="brand">
-      <div class="who">
-        <div class="avatar">🎀</div>
-        <div><div class="handle">@keiradaily</div><div class="mini">pilihan hari ini</div></div>
-      </div>
-      <div class="badge">1 pilihan</div>
-    </div>
+    <div class="brand"><div class="avatar">🎀</div><div class="handle">@keiradaily</div></div>
 
     <section class="hero">
-      <div class="eyebrow">Kamu pilih yang mana?</div>
-      <h1>1, 2, atau 3? 👀</h1>
-      <p>Ingat outfit di video tadi? Pilih nomor yang paling kamu suka.</p>
+      <h1>Kamu pilih yang mana? 👀</h1>
+      <p>Tap satu nomor favoritmu. Pilihan langsung dikirim.</p>
     </section>
-
-    <div class="question">
-      <h2>Pilih favoritmu</h2>
-      <span>cukup 1 klik</span>
-    </div>
 
     <section class="looks" id="vote">
-      <button class="look" type="button" data-choice="1" aria-label="Pilih nomor 1">
-        <span class="check">✓</span><span class="look-inner"><span class="spark">✨</span><span class="num">1</span><span class="label">Nomor 1</span></span>
-      </button>
-      <button class="look" type="button" data-choice="2" aria-label="Pilih nomor 2">
-        <span class="check">✓</span><span class="look-inner"><span class="spark">🎀</span><span class="num">2</span><span class="label">Nomor 2</span></span>
-      </button>
-      <button class="look" type="button" data-choice="3" aria-label="Pilih nomor 3">
-        <span class="check">✓</span><span class="look-inner"><span class="spark">💗</span><span class="num">3</span><span class="label">Nomor 3</span></span>
-      </button>
+      <button class="look" type="button" data-choice="1" aria-label="Pilih nomor 1"><span class="inner"><span class="emoji">✨</span><span class="num">1</span><span class="pick">PILIH 1</span></span></button>
+      <button class="look" type="button" data-choice="2" aria-label="Pilih nomor 2"><span class="inner"><span class="emoji">🎀</span><span class="num">2</span><span class="pick">PILIH 2</span></span></button>
+      <button class="look" type="button" data-choice="3" aria-label="Pilih nomor 3"><span class="inner"><span class="emoji">💗</span><span class="num">3</span><span class="pick">PILIH 3</span></span></button>
     </section>
 
-    <div class="selection" id="selection">Pilih salah satu nomor di atas.</div>
-    <div class="tip">Setelah memilih, tekan tombol di bawah untuk mengirim pilihanmu.</div>
+    <div class="hint">Cukup 1 tap — tidak perlu tombol kirim lagi.</div>
+    <div class="status" id="status">Pilihan terkirim ✓</div>
     <footer>tari · gaya · harian</footer>
   </main>
-
-  <div class="sticky">
-    <div class="sticky-inner">
-      <button class="submit" id="submitBtn" type="button" disabled>Kirim Pilihan</button>
-      <div class="toast" id="toast">Pilihanmu sudah dikirim ✨</div>
-    </div>
-  </div>
 
   <script>
     const SMARTLINK='https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a';
     const looks=[...document.querySelectorAll('.look')];
-    const submitBtn=document.getElementById('submitBtn');
-    const selection=document.getElementById('selection');
-    const toast=document.getElementById('toast');
-    let selected=null;
+    const status=document.getElementById('status');
+    let locked=false;
 
-    looks.forEach(btn=>btn.addEventListener('click',()=>{
-      selected=btn.dataset.choice;
-      looks.forEach(x=>x.classList.toggle('active',x===btn));
-      selection.textContent=`Nomor ${selected} dipilih ✨`;
-      selection.classList.add('ready');
-      submitBtn.disabled=false;
-      submitBtn.textContent=`Kirim Pilihan ${selected} →`;
-      toast.classList.remove('show');
-
-      if(typeof gtag==='function'){
-        gtag('event','vote_selected',{
-          choice:selected,
-          event_category:'vote_funnel'
-        });
-      }
-    }));
-
-    submitBtn.addEventListener('click',()=>{
-      if(!selected)return;
-      localStorage.setItem('keira-outfit-vote',selected);
+    function goSmartlink(choice){
+      if(locked)return;
+      locked=true;
+      looks.forEach(x=>{x.disabled=true;x.classList.toggle('selected',x.dataset.choice===choice)});
+      status.textContent=`Nomor ${choice} terkirim ✓`;
+      status.classList.add('show');
+      localStorage.setItem('keira-outfit-vote',choice);
       localStorage.setItem('keira-outfit-vote-time',new Date().toISOString());
-      submitBtn.disabled=true;
-      submitBtn.textContent='Terkirim ✓';
-      toast.classList.add('show');
 
       if(typeof gtag==='function'){
-        gtag('event','vote_submitted',{
-          choice:selected,
-          event_category:'vote_funnel'
-        });
+        gtag('event','vote_selected',{choice,event_category:'vote_funnel'});
+        gtag('event','vote_submitted',{choice,event_category:'vote_funnel'});
+      }
+
+      let moved=false;
+      const redirect=()=>{if(moved)return;moved=true;window.location.assign(SMARTLINK)};
+
+      if(typeof gtag==='function'){
         gtag('event','smartlink_redirect',{
-          choice:selected,
+          choice,
           event_category:'vote_funnel',
           destination:'adsterra_smartlink',
-          transport_type:'beacon'
+          transport_type:'beacon',
+          event_callback:redirect,
+          event_timeout:450
         });
       }
+      setTimeout(redirect,550);
+    }
 
-      setTimeout(()=>{window.location.assign(SMARTLINK);},450);
-    });
+    looks.forEach(btn=>btn.addEventListener('click',()=>goSmartlink(btn.dataset.choice)));
   </script>
 </body>
 </html>
