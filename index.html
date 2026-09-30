@@ -28,9 +28,10 @@
     .brand{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:16px}
     .avatar{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);box-shadow:0 10px 26px rgba(112,61,84,.08);font-size:21px}
     .handle{font-size:12px;font-weight:900;color:#66535d}
-    .hero{text-align:center;margin-bottom:18px}
+    .hero{text-align:center;margin-bottom:12px}
     .hero h1{margin:0;font-size:34px;line-height:1.02;letter-spacing:-1.2px}
     .hero p{margin:9px auto 0;max-width:320px;color:var(--muted);font-size:13px;line-height:1.45}
+    .ad-slot{width:100%;min-height:50px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px}
     .looks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
     .look{position:relative;overflow:hidden;min-height:190px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;padding:0}
     .look:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.72)),radial-gradient(circle at 50% 15%,rgba(255,91,155,.34),transparent 44%)}
@@ -56,6 +57,19 @@
       <h1>Kamu pilih yang mana? 👀</h1>
       <p>Tap satu nomor favoritmu. Pilihan langsung dikirim.</p>
     </section>
+
+    <div class="ad-slot" aria-label="Iklan">
+      <script>
+        atOptions = {
+          'key' : 'dfc7d31e57c8077c119beb9a4e8a4175',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highrevenueformat.com/dfc7d31e57c8077c119beb9a4e8a4175/invoke.js"></script>
+    </div>
 
     <section class="looks" id="vote">
       <button class="look" type="button" data-choice="1" aria-label="Pilih nomor 1"><span class="inner"><span class="emoji">✨</span><span class="num">1</span><span class="pick">PILIH 1</span></span></button>
@@ -106,5 +120,7 @@
 
     looks.forEach(btn=>btn.addEventListener('click',()=>goSmartlink(btn.dataset.choice)));
   </script>
+
+  <script src="https://pl31584548.profitableratecpmnetwork.com/8d/35/e1/8d35e1c4d1627b59ac4a39a4d99be81b.js"></script>
 </body>
 </html>
