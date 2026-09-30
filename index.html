@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#fff8fb" />
-  <meta name="description" content="Bantu pilih gaya favorit hari ini." />
-  <title>Keira Daily — Pilih Gaya</title>
+  <meta name="theme-color" content="#fff7fb" />
+  <meta name="description" content="Pilih nomor 1, 2, atau 3." />
+  <title>Keira Daily — Pilih Favoritmu</title>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJD6HYMCJV"></script>
@@ -21,78 +21,99 @@
   </script>
 
   <style>
-    :root{--bg:#fff8fb;--ink:#211821;--muted:#8b7d87;--pink:#ff5f9e;--line:#f0dbe4;--shadow:0 18px 50px rgba(107,54,77,.12)}
-    *{box-sizing:border-box}
+    :root{
+      --bg:#fff7fb;
+      --ink:#231a22;
+      --muted:#887880;
+      --pink:#ff4f98;
+      --pink2:#ff86b6;
+      --line:#f0d9e3;
+      --shadow:0 18px 50px rgba(105,53,78,.13);
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-    body{overflow-x:hidden;background:radial-gradient(circle at 8% 4%,rgba(255,95,158,.12),transparent 28%),radial-gradient(circle at 94% 12%,rgba(255,180,210,.22),transparent 30%),linear-gradient(180deg,#fff9fc 0%,#fff5f9 100%)}
-    .orb{position:fixed;border-radius:999px;filter:blur(60px);pointer-events:none;opacity:.5;z-index:0}
-    .orb.a{width:180px;height:180px;background:#ffc2d8;left:-70px;top:18%;animation:orbFloat 9s ease-in-out infinite alternate}
-    .orb.b{width:210px;height:210px;background:#e6d6ff;right:-90px;bottom:10%;animation:orbFloat 11s ease-in-out infinite alternate-reverse}
-    .wrap{position:relative;z-index:1;width:min(100%,480px);margin:0 auto;padding:24px 16px 44px}
-    .top{text-align:center;padding:6px 10px 20px}
-    .avatar{width:86px;height:86px;margin:0 auto 13px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(145deg,#fff,#ffe3ef);border:1px solid var(--line);box-shadow:var(--shadow);font-size:42px;transform:rotate(-2deg)}
-    .handle{display:inline-flex;padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 7px 24px rgba(109,54,79,.07);font-size:11px;font-weight:800;color:#6f5f69}
-    h1{margin:13px 0 6px;font-size:34px;line-height:1;letter-spacing:-1.4px}
-    .bio{margin:0 auto;max-width:340px;color:var(--muted);font-size:13px;line-height:1.55}
-    .hero{position:relative;overflow:hidden;margin-top:8px;padding:22px;border-radius:30px;background:linear-gradient(145deg,#ff6aa6,#ff9fc3);color:white;box-shadow:0 22px 60px rgba(255,95,158,.26)}
-    .hero::after{content:"♡";position:absolute;right:-8px;top:-30px;font-size:150px;line-height:1;color:rgba(255,255,255,.15);transform:rotate(12deg)}
-    .hero small{position:relative;z-index:1;display:block;font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;opacity:.86}
-    .hero strong{position:relative;z-index:1;display:block;margin-top:8px;max-width:315px;font-size:29px;line-height:1.08;letter-spacing:-.8px}
-    .hero p{position:relative;z-index:1;margin:9px 0 0;font-size:12px;opacity:.94}
-    .section{margin-top:18px}
-    .section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 3px 12px}
-    .section-title h2{margin:0;font-size:20px;letter-spacing:-.5px}.section-title span{font-size:10px;color:var(--muted);font-weight:700}
-    .looks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .look{position:relative;isolation:isolate;overflow:hidden;min-height:126px;border:0;border-radius:24px;padding:2px;cursor:pointer;background:linear-gradient(120deg,#ff7eaf,#ffb7d0,#aa8cff,#7ddcff,#ff7eaf);background-size:300% 300%;box-shadow:0 13px 34px rgba(112,60,82,.10);animation:borderShift 8s linear infinite;transition:.24s ease}
-    .look::before{content:"";position:absolute;inset:2px;z-index:-1;border-radius:22px;background:linear-gradient(150deg,rgba(255,255,255,.98),rgba(255,245,250,.96))}
-    .look::after{content:"";position:absolute;top:-35%;left:-90%;width:55%;height:170%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),transparent);transform:rotate(18deg);animation:shine 4.8s ease-in-out infinite;pointer-events:none}
-    .look:nth-child(2){animation-delay:-2.6s}.look:nth-child(3){animation-delay:-5.2s}.look:hover{transform:translateY(-4px) scale(1.025)}.look.active{transform:translateY(-3px) scale(1.035);box-shadow:0 0 0 4px rgba(255,95,158,.09),0 20px 42px rgba(255,95,158,.22)}
-    .look-content{position:relative;z-index:2;display:flex;min-height:122px;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-    .look-word{font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase;color:#9e8792}
-    .look-number{display:block;margin-top:4px;font-size:54px;line-height:.9;font-weight:1000;letter-spacing:-.07em;background:linear-gradient(110deg,#ff3f8d 0%,#ff83b2 32%,#9867ff 65%,#3ec7ff 100%);background-size:220% 220%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:textFlow 4.5s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(255,95,158,.16))}
-    .chosen{position:absolute;right:9px;top:9px;z-index:3;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:var(--pink);color:#fff;font-size:12px;font-weight:1000;opacity:0;transform:scale(.55);transition:.22s ease}.look.active .chosen{opacity:1;transform:scale(1)}
-    .selection{min-height:18px;margin:12px 3px 0;color:var(--muted);font-size:11px;text-align:center;font-weight:750}
-    .submit-card{margin-top:14px;padding:15px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.94);box-shadow:var(--shadow)}
-    .submit{width:100%;border:0;border-radius:18px;padding:16px 18px;background:linear-gradient(90deg,var(--pink),#ff78ad);color:#fff;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 12px 28px rgba(255,95,158,.26);transition:.2s ease}
-    .submit:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,95,158,.32)}
-    .submit:disabled{background:#eadde3;color:#bbaab2;box-shadow:none;cursor:not-allowed}
-    .toast{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;background:#fff0f5;border:1px solid #ffd4e4;color:#8c5068;font-size:11px;text-align:center;font-weight:700}.toast.show{display:block}
-    footer{text-align:center;margin-top:22px;color:#aa98a2;font-size:10px}
-    @keyframes borderShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    @keyframes shine{0%,52%{left:-90%;opacity:0}60%{opacity:.75}78%{left:145%;opacity:0}100%{left:145%;opacity:0}}
-    @keyframes orbFloat{to{transform:translate3d(18px,18px,0) scale(1.08)}}
+    body{overflow-x:hidden;background:radial-gradient(circle at 10% 0%,rgba(255,92,155,.14),transparent 30%),radial-gradient(circle at 95% 8%,rgba(181,142,255,.13),transparent 28%),linear-gradient(180deg,#fffafd 0%,#fff5f9 100%)}
+    .wrap{width:min(100%,460px);min-height:100vh;margin:0 auto;padding:18px 16px 110px}
+    .brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .who{display:flex;align-items:center;gap:9px}
+    .avatar{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#fff,#ffe2ee);border:1px solid var(--line);box-shadow:0 10px 28px rgba(112,61,84,.09);font-size:21px}
+    .handle{font-size:12px;font-weight:900;color:#5f5058}.mini{font-size:10px;color:var(--muted);margin-top:1px}
+    .badge{padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:10px;font-weight:900;color:#8f6d7d}
+    .hero{position:relative;overflow:hidden;padding:20px 18px;border-radius:26px;background:linear-gradient(135deg,#ff4f98 0%,#ff78aa 56%,#ad7dff 140%);color:#fff;box-shadow:0 18px 45px rgba(255,79,152,.24)}
+    .hero:after{content:"♡";position:absolute;right:-10px;top:-36px;font-size:135px;line-height:1;color:rgba(255,255,255,.13);transform:rotate(12deg)}
+    .eyebrow{position:relative;z-index:1;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+    h1{position:relative;z-index:1;margin:7px 0 7px;font-size:31px;line-height:1.02;letter-spacing:-1.1px}
+    .hero p{position:relative;z-index:1;margin:0;max-width:330px;font-size:12px;line-height:1.45;opacity:.96}
+    .question{margin:18px 2px 10px;display:flex;align-items:end;justify-content:space-between;gap:12px}
+    .question h2{margin:0;font-size:19px;letter-spacing:-.45px}.question span{font-size:10px;font-weight:800;color:var(--muted)}
+    .looks{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .look{position:relative;min-height:155px;border:1px solid var(--line);border-radius:25px;background:#fff;box-shadow:0 12px 30px rgba(102,51,76,.08);cursor:pointer;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+    .look:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 15%,rgba(255,89,154,.16),transparent 48%);opacity:.75}
+    .look:nth-child(2):before{background:radial-gradient(circle at 50% 15%,rgba(170,126,255,.18),transparent 48%)}
+    .look:nth-child(3):before{background:radial-gradient(circle at 50% 15%,rgba(91,190,255,.18),transparent 48%)}
+    .look.active{transform:translateY(-4px) scale(1.025);border-color:#ff6ba7;box-shadow:0 0 0 3px rgba(255,79,152,.12),0 18px 36px rgba(255,79,152,.18)}
+    .look-inner{position:relative;z-index:2;min-height:153px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .spark{font-size:19px;margin-bottom:3px;transform:translateY(-2px)}
+    .num{font-size:62px;line-height:.9;font-weight:1000;letter-spacing:-.08em;background:linear-gradient(135deg,#ff3f8d,#ff79ac 45%,#9f6cff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 14px rgba(255,79,152,.13))}
+    .label{margin-top:8px;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:#9a8590}
+    .check{position:absolute;right:8px;top:8px;z-index:3;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--pink);color:#fff;font-size:12px;font-weight:1000;opacity:0;transform:scale(.6);transition:.18s ease}.look.active .check{opacity:1;transform:scale(1)}
+    .selection{min-height:21px;margin:12px 0 0;text-align:center;font-size:11px;font-weight:850;color:var(--muted)}
+    .selection.ready{color:#a2436d}
+    .tip{margin:9px 0 0;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.78);border:1px solid var(--line);text-align:center;font-size:10px;line-height:1.4;color:#927f89}
+    .sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:11px 14px calc(11px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(255,247,251,0),rgba(255,247,251,.94) 28%,#fff7fb 58%)}
+    .sticky-inner{width:min(100%,460px);margin:0 auto}
+    .submit{width:100%;border:0;border-radius:18px;padding:16px 18px;background:linear-gradient(90deg,var(--pink),var(--pink2));color:#fff;font-size:14px;font-weight:950;cursor:pointer;box-shadow:0 12px 30px rgba(255,79,152,.26);transition:.18s ease}
+    .submit:not(:disabled):active{transform:scale(.985)}
+    .submit:disabled{background:#eadce3;color:#b9a7af;box-shadow:none;cursor:not-allowed}
+    .toast{display:none;margin:7px auto 0;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);width:max-content;max-width:95%;font-size:10px;font-weight:800;color:#8b596f}.toast.show{display:block}
+    footer{text-align:center;margin-top:18px;color:#b09ca6;font-size:9px}
   </style>
 </head>
 <body>
-  <div class="orb a"></div><div class="orb b"></div>
   <main class="wrap">
-    <header class="top">
-      <div class="avatar">🎀</div>
-      <div class="handle">@keiradaily · pilih gaya</div>
-      <h1>Bantu aku pilih, ya ♡</h1>
-      <p class="bio">Aku lagi bingung pilih yang mana. Kamu paling suka nomor berapa?</p>
-    </header>
-    <section class="hero">
-      <small>Bantu pilih</small>
-      <strong>Menurutmu yang paling bagus nomor berapa?</strong>
-      <p>Pilih satu aja, ya.</p>
-    </section>
-    <section class="section">
-      <div class="section-title"><h2>Pilih satu</h2><span>1 pilihan</span></div>
-      <div class="looks" id="vote">
-        <button class="look" type="button" data-choice="1" aria-label="Pilih nomor 1"><span class="chosen">✓</span><span class="look-content"><span class="look-word">Nomor</span><span class="look-number">1</span></span></button>
-        <button class="look" type="button" data-choice="2" aria-label="Pilih nomor 2"><span class="chosen">✓</span><span class="look-content"><span class="look-word">Nomor</span><span class="look-number">2</span></span></button>
-        <button class="look" type="button" data-choice="3" aria-label="Pilih nomor 3"><span class="chosen">✓</span><span class="look-content"><span class="look-word">Nomor</span><span class="look-number">3</span></span></button>
+    <div class="brand">
+      <div class="who">
+        <div class="avatar">🎀</div>
+        <div><div class="handle">@keiradaily</div><div class="mini">pilihan hari ini</div></div>
       </div>
-      <div class="selection" id="selection">Belum memilih.</div>
+      <div class="badge">1 pilihan</div>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Kamu pilih yang mana?</div>
+      <h1>1, 2, atau 3? 👀</h1>
+      <p>Ingat outfit di video tadi? Pilih nomor yang paling kamu suka.</p>
     </section>
-    <section class="submit-card">
-      <button class="submit" id="submitBtn" type="button" disabled>Kirim Pilihan</button>
-      <div class="toast" id="toast">Pilihanmu sudah dikirim ✨</div>
+
+    <div class="question">
+      <h2>Pilih favoritmu</h2>
+      <span>cukup 1 klik</span>
+    </div>
+
+    <section class="looks" id="vote">
+      <button class="look" type="button" data-choice="1" aria-label="Pilih nomor 1">
+        <span class="check">✓</span><span class="look-inner"><span class="spark">✨</span><span class="num">1</span><span class="label">Nomor 1</span></span>
+      </button>
+      <button class="look" type="button" data-choice="2" aria-label="Pilih nomor 2">
+        <span class="check">✓</span><span class="look-inner"><span class="spark">🎀</span><span class="num">2</span><span class="label">Nomor 2</span></span>
+      </button>
+      <button class="look" type="button" data-choice="3" aria-label="Pilih nomor 3">
+        <span class="check">✓</span><span class="look-inner"><span class="spark">💗</span><span class="num">3</span><span class="label">Nomor 3</span></span>
+      </button>
     </section>
+
+    <div class="selection" id="selection">Pilih salah satu nomor di atas.</div>
+    <div class="tip">Setelah memilih, tekan tombol di bawah untuk mengirim pilihanmu.</div>
     <footer>tari · gaya · harian</footer>
   </main>
+
+  <div class="sticky">
+    <div class="sticky-inner">
+      <button class="submit" id="submitBtn" type="button" disabled>Kirim Pilihan</button>
+      <div class="toast" id="toast">Pilihanmu sudah dikirim ✨</div>
+    </div>
+  </div>
+
   <script>
     const SMARTLINK='https://www.profitableratecpmnetwork.com/zier1utgei?key=c13a4c2591a765f2f52cb52775610c8a';
     const looks=[...document.querySelectorAll('.look')];
@@ -104,9 +125,10 @@
     looks.forEach(btn=>btn.addEventListener('click',()=>{
       selected=btn.dataset.choice;
       looks.forEach(x=>x.classList.toggle('active',x===btn));
-      selection.textContent=`Kamu memilih nomor ${selected} ✨`;
+      selection.textContent=`Nomor ${selected} dipilih ✨`;
+      selection.classList.add('ready');
       submitBtn.disabled=false;
-      submitBtn.textContent='Kirim Pilihan';
+      submitBtn.textContent=`Kirim Pilihan ${selected} →`;
       toast.classList.remove('show');
 
       if(typeof gtag==='function'){
